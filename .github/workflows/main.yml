@@ -36,4 +36,4 @@ jobs:
 
     - name: Execute
       working-directory: ${{env.GITHUB_WORKSPACE}}
-      run: ${{env.EXE_NAME}}
+      run: ./${{env.EXE_NAME}}
