@@ -33,8 +33,8 @@ jobs:
     - name: Upload executable artefact
       uses: actions/upload-artifact@v4
       with:
-        name: EXE_NAME
-        path: EXE_BUILD_LOCATION
+        name: ${{env.EXE_NAME}}
+        path: ${{env.EXE_BUILD_LOCATION}}
 
   test:
     runs-on: windows-latest
@@ -44,7 +44,7 @@ jobs:
     - name: Download executable artefact
       uses: actions/download-artifact@v4
       with:
-        name: EXE_NAME
+        name: ${{env.EXE_NAME}}
         path: .
     
     - name: Execute
