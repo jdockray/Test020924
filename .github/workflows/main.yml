@@ -30,15 +30,23 @@ jobs:
       working-directory: ${{env.GITHUB_WORKSPACE}}
       run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} /property:Platform=${{env.PLATFORM}} ${{env.SOLUTION_FILE_PATH}}
 
-    - name: Move exe
-      working-directory: ${{env.GITHUB_WORKSPACE}}
-      run: move ${{env.EXE_BUILD_LOCATION}} .
+    - name: Upload executable artefact
+      uses: actions/upload-artifact@v4
+      with:
+        name: EXE_NAME
+        path: EXE_BUILD_LOCATION
 
   test:
     runs-on: windows-latest
     needs: build
 
     steps:
+    - name: Download executable artefact
+      uses: actions/download-artifact@v4
+      with:
+        name: EXE_NAME
+        path: .
+    
     - name: Execute
       working-directory: ${{env.GITHUB_WORKSPACE}}
       run: ./${{env.EXE_NAME}} >Output.txt
