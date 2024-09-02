@@ -34,6 +34,11 @@ jobs:
       working-directory: ${{env.GITHUB_WORKSPACE}}
       run: move ${{env.EXE_BUILD_LOCATION}} .
 
+  test:
+    runs-on: windows-latest
+    needs: build
+
+    steps:
     - name: Execute
       working-directory: ${{env.GITHUB_WORKSPACE}}
       run: ./${{env.EXE_NAME}} >Output.txt
