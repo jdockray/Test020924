@@ -36,4 +36,8 @@ jobs:
 
     - name: Execute
       working-directory: ${{env.GITHUB_WORKSPACE}}
-      run: ./${{env.EXE_NAME}}
+      run: ./${{env.EXE_NAME}} >Output.txt
+
+    - name: Check output
+      working-directory: ${{env.GITHUB_WORKSPACE}}
+      run: git diff Output.txt ExpectedOutput.txt
