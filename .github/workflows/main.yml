@@ -40,4 +40,4 @@ jobs:
 
     - name: Check output
       working-directory: ${{env.GITHUB_WORKSPACE}}
-      run: git diff Output.txt ExpectedOutput.txt
+      run: git diff --no-index Output.txt ExpectedOutput.txt
